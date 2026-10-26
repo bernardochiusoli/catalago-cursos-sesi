@@ -4,9 +4,9 @@ Aplicação web para consultar, pesquisar e filtrar os cursos de um ambiente edu
 
 | | |
 | --- | --- |
-| Aplicação publicada | `[preencher com o link do Render]` |
-| Documentação da API (Swagger) | `[link publicado]/docs` |
-| Documento OpenAPI | `[link publicado]/openapi/v1.json` |
+| Aplicação publicada | `https://catalogo-cursos-sesi-lx1e.onrender.com` |
+| Documentação da API (Swagger) | `https://catalogo-cursos-sesi-lx1e.onrender.com/docs/`|
+| Documento OpenAPI | `https://catalogo-cursos-sesi-lx1e.onrender.com/openapi/v1.json` |
 | Protótipo de referência | Figma "[TEST DEV] SESI Indústria" |
 
 > O serviço gratuito de hospedagem "dorme" sem uso: a primeira visita pode levar cerca de um minuto. A aplicação mostra o estado de carregamento enquanto isso. Para rodar localmente, veja [Instruções para execução](#instruções-para-execução).
