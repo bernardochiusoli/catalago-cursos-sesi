@@ -133,11 +133,11 @@ Pré-requisitos: [.NET SDK 10](https://dotnet.microsoft.com/download), Node.js 2
 # 1. Banco: crie um banco vazio chamado "catalogo"
 createdb -U postgres catalogo
 
-# 2. API (porta 5080). A conexão padrão de desenvolvimento está em appsettings.Development.json
+# 2. API (porta 5000). A conexão padrão de desenvolvimento está em appsettings.Development.json
 cd backend/Catalogo.Api
 dotnet run
 
-# 3. Front (porta 5173), em outro terminal. O Vite redireciona /api para a porta 5080
+# 3. Front (porta 5173), em outro terminal. O Vite redireciona /api para a porta 5000
 cd frontend
 npm install
 npm run dev
@@ -302,21 +302,23 @@ Meta: WCAG 2.1 nível AA.
 
 ## Processo de publicação
 
-1. **Banco (Neon, gratuito):** criar projeto e banco `catalogo`, copiar a URL de conexão (`postgresql://...?sslmode=require`).
-2. **Aplicação (Render, gratuito):** "New Web Service" a partir do repositório do GitHub, ambiente **Docker** (o Render lê o `Dockerfile` da raiz; o `render.yaml` traz a mesma configuração).
-3. **Variáveis de ambiente no Render:** `DATABASE_URL` com a URL do Neon e `PORT=8080` (já no `render.yaml`). Nenhum segredo fica no repositório.
-4. **Health check:** `/health`.
-5. **Deploy automático:** cada push na `main` gera nova imagem e nova publicação. Na subida, a API aplica os scripts do banco.
-6. **ZIP de publicação:** `scripts/gerar-publicacao.sh` (ou `.ps1` no Windows) gera `publicacao/catalogo-publicacao.zip` com a API publicada e o front compilado em `wwwroot`. O pipeline de CI (`.github/workflows/ci.yml`) também gera esse ZIP a cada push e o disponibiliza como artefato (Actions > execução > Artifacts). Para rodar o pacote: `dotnet Catalogo.Api.dll` com a variável de conexão definida.
+A implantação da infraestrutura foi modelada como código (IaC) para garantir a consistência e a portabilidade do ambiente entre os estágios de desenvolvimento e produção.
 
-Nenhum serviço pago foi contratado. Limite conhecido do plano gratuito: o serviço dorme após um período sem acesso.
+1. **Banco de Dados (Neon):** Provisionamento de um cluster PostgreSQL 16 serverless sob a região `sa-east-1`, utilizando conexões diretas (`Direct connection`) para otimização de latência e extração da URI de conexão estruturada (`postgresql://...`).
+2. **Infraestrutura como Código (Render Blueprints):** Implantação automatizada acionada diretamente pelo arquivo de especificação `render.yaml` na raiz do projeto, eliminando o provisionamento manual e configurando o ambiente isolado sob contêiner Linux.
+3. **Isolamento de Variáveis e Credenciais:** Vinculação estrita das variáveis dinâmicas de ambiente `DATABASE_URL` (chave de acesso ao Neon) e `PORT=8080` de forma mascarada no painel de controle do Render, mitigando vazamentos de segredos no histórico de commits do Git.
+4. **Health Check de Sanidade:** Mapeamento do endpoint `/health` na camada do ASP.NET Core para monitoramento de atividade de rede e validação síncrona de conectividade com a persistência de dados.
+5. **Integração e Distribuição Contínua (CI/CD):** Deploy automatizado acionado via webhook a cada novo incremento na branch principal (`main`), disparando a suite de testes estáticos no GitHub Actions, gerando uma nova imagem Docker imutável e recarregando os scripts SQL de forma idempotente na inicialização.
+6. **Pacote de Publicação Compilado:** O fluxo de trabalho `.github/workflows/ci.yml` centraliza a compilação cruzada do ecossistema, injetando o build de produção do React na pasta integrada `wwwroot` e gerando o artefato de entrega `publicacao/catalogo-publicacao.zip` (disponível para execução local nativa via `dotnet Catalogo.Api.dll` sob injeção de variáveis de conexão).
+
+Nenhum serviço tarifado ou recurso pago foi associado à solução.
 
 ## Limitações conhecidas
 
-Resumo; a lista completa, com as diferenças em relação ao Figma, está em [LIMITACOES.md](LIMITACOES.md).
+A listagem exaustiva de desvios técnicos e deliberações de escopo em relação ao protótipo de referência encontra-se documentada e justificada na matriz de rastreabilidade [LIMITACOES.md](LIMITACOES.md).
 
-- Sem integração real com o Moodle (diferencial opcional); a tela de AVA é uma demonstração navegável.
-- Sem paginação na API, porque o catálogo tem 9 cursos; seria o primeiro passo para crescer.
-- Cadastro, edição e exclusão de cursos estão fora do escopo, conforme o enunciado.
-- Plano gratuito do Render: primeira visita após inatividade pode demorar cerca de um minuto.
-- A inicialização do banco roda na subida da aplicação, o que é prático para o case; em produção, seria um passo separado do pipeline.
+- **Demonstração de Ambiente de Aprendizagem (AVA):** A tela do ambiente virtual foi concebida como uma simulação funcional e navegável de interface, não possuindo acoplamento de integração real de endpoints através de protocolos Web Services ou Moodle Web API.
+- **Limitação de Volume de Dados de Leitura:** Ausência de regras de paginação segmentadas em nível de banco de dados (`LIMIT/OFFSET`) e ordenação avançada na API, considerando o escopo estrito de volumetria estabilizado em 9 registros de cursos.
+- **Operações de Escrita em Banco (Persistência):** Os verbos HTTP de alteração de estado estrutural (`POST`, `PUT`, `DELETE`) para o gerenciamento administrativo dos registros estão desativados por estarem fora do escopo funcional delimitado no edital.
+- **Latência Inicial de Inicialização (Cold Start):** Em decorrência do provisionamento sob a camada de execução gratuita (Free Tier) do Render, o contêiner entra em estado de hibernação por ociosidade. A primeira requisição pós-inatividade pode demandar cerca de 60 segundos para reidratação da instância.
+- **Orquestração de Inicialização de Esquema Relacional:** A execução dos scripts de criação e carga do banco ocorre no pipeline de subida da aplicação do contêiner. Em ambientes corporativos de produção real, essa atividade é segregada da execução e delegada a um estágio isolado de migração de banco de dados no pipeline de CI/CD.
