@@ -1,0 +1,218 @@
+/* ===== Fonte (Open Sans do pacote do SESI, licença OFL), convertida para WOFF2
+   e reduzida aos caracteres latinos: de 530 KB para cerca de 90 KB ===== */
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/OpenSans-Variable.woff2') format('woff2');
+  font-weight: 300 800;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== Tokens tirados do Figma e dos SVGs do pacote ===== */
+:root {
+  --vermelho: #d00602;          /* logo e destaques */
+  --vermelho-vivo: #c4161c;     /* cards de depoimento */
+  --vermelho-profundo: #8a0000; /* faixas de seção */
+  --vinho: #1e0303;             /* rodapé */
+  --bege: #fcd19c;
+  --rosa-claro: #fde4e3;        /* fundo dos ícones de benefício */
+  --preto: #0c0c0d;
+  --cinza-900: #26262a;
+  --cinza-700: #4a4a52;         /* texto secundário: 8,9:1 sobre branco */
+  --cinza-300: #d0d0d6;
+  --cinza-100: #f3f3f5;
+  --branco: #ffffff;
+
+  --chip-matematica: #fcd19c;
+  --chip-ciencias-da-natureza: #e6dcff;
+  --chip-linguagens: #d4e8ff;
+  --chip-sustentabilidade: #d3f2de;
+
+  --raio: 8px;
+  --raio-grande: 12px;
+  --sombra: 0 8px 24px rgb(12 12 13 / 0.12);
+  --largura: 1180px;
+  --respiro: clamp(16px, 4vw, 32px);
+  --foco: 3px solid #1f6feb;
+  --cabecalho: 72px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--cabecalho) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--preto);
+  background: var(--branco);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  /* os atributos width/height evitam salto de layout; height:auto mantém a proporção */
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* Foco sempre visível para quem navega por teclado */
+:focus-visible {
+  outline: var(--foco);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--largura) + 2 * var(--respiro));
+  margin-inline: auto;
+  padding-inline: var(--respiro);
+}
+
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pular-conteudo {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  background: var(--preto);
+  color: var(--branco);
+  border-radius: var(--raio);
+  font-weight: 600;
+  text-decoration: none;
+}
+.pular-conteudo:focus {
+  top: 12px;
+}
+
+/* ===== Botões ===== */
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px; /* área de toque mínima */
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.botao svg {
+  width: 18px;
+  height: 18px;
+}
+.botao--claro {
+  background: var(--branco);
+  color: var(--preto);
+}
+.botao--claro:hover {
+  background: var(--cinza-100);
+}
+.botao--escuro {
+  background: var(--preto);
+  color: var(--branco);
+}
+.botao--escuro:hover {
+  background: var(--cinza-900);
+}
+.botao--contorno {
+  background: transparent;
+  border-color: var(--cinza-300);
+  color: var(--preto);
+}
+.botao--contorno:hover {
+  border-color: var(--preto);
+}
+.botao--vermelho {
+  background: var(--vermelho);
+  color: var(--branco);
+}
+.botao--vermelho:hover {
+  background: #a90501;
+}
+
+.secao {
+  padding-block: clamp(48px, 8vw, 96px);
+}
+
+.sobretitulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.titulo-secao {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

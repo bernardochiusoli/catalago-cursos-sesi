@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentação da API | Catálogo de cursos SESI</title>
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
+  </head>
+  <body>
+    <!-- Interface Swagger UI lendo o documento OpenAPI gerado pela própria API (.NET) -->
+    <div id="swagger-ui"></div>
+    <script src="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui-bundle.js" crossorigin></script>
+    <script>
+      window.ui = SwaggerUIBundle({ url: '/openapi/v1.json', dom_id: '#swagger-ui' })
+    </script>
+  </body>
+</html>

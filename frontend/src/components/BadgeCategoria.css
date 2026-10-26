@@ -1,0 +1,62 @@
+.badge-categoria {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--preto);
+  background: var(--chip-matematica);
+}
+.badge-categoria--ciencias-da-natureza {
+  background: var(--chip-ciencias-da-natureza);
+}
+.badge-categoria--linguagens {
+  background: var(--chip-linguagens);
+}
+.badge-categoria--sustentabilidade {
+  background: var(--chip-sustentabilidade);
+}
+
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--cinza-100);
+  color: var(--cinza-900);
+  border: 1px solid var(--cinza-300);
+}
+.badge-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.badge-status--InscricoesAbertas {
+  background: #e3f6ea;
+  border-color: #a9dcbb;
+  color: #11602f;
+}
+.badge-status--EmBreve {
+  background: #fff1dc;
+  border-color: #f2c98a;
+  color: #7a4500;
+}
+.badge-status--EmAndamento {
+  background: #e4eeff;
+  border-color: #aac4f2;
+  color: #1d4a99;
+}
+.badge-status--Encerrado {
+  background: var(--cinza-100);
+  border-color: var(--cinza-300);
+  color: var(--cinza-700);
+}

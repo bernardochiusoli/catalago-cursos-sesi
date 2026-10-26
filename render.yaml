@@ -1,0 +1,14 @@
+# Blueprint do Render (plano gratuito). O banco fica no Neon: cole a URL de conexão
+# na variável DATABASE_URL pelo painel do Render (ela não fica no repositório).
+services:
+  - type: web
+    name: catalogo-cursos-sesi
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: PORT          # a imagem escuta em 8080 (ASPNETCORE_HTTP_PORTS no Dockerfile)
+        value: "8080"
+      - key: DATABASE_URL
+        sync: false

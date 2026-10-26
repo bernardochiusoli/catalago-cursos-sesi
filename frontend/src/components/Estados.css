@@ -1,0 +1,48 @@
+.estado-carregando__grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+.esqueleto {
+  height: 400px;
+  border-radius: var(--raio);
+  background: linear-gradient(90deg, var(--cinza-100) 25%, #e7e7eb 50%, var(--cinza-100) 75%);
+  background-size: 200% 100%;
+  animation: brilho 1.2s ease-in-out infinite;
+}
+@keyframes brilho {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.estado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  max-width: 520px;
+  margin: 24px auto;
+  padding: 40px 24px;
+  text-align: center;
+  border: 1px dashed var(--cinza-300);
+  border-radius: var(--raio-grande);
+  color: var(--cinza-700);
+}
+.estado__icone {
+  width: 40px;
+  height: 40px;
+  color: var(--vermelho);
+}
+.estado__titulo {
+  font-size: 1.25rem;
+  color: var(--preto);
+}
+.estado--erro {
+  border-style: solid;
+  border-color: #f1b8b6;
+  background: #fff6f6;
+}

@@ -1,0 +1,26 @@
+.acordeao__item {
+  border-bottom: 1px solid var(--cinza-300);
+}
+.acordeao__cabecalho button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border: 0;
+  background: none;
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+.acordeao__cabecalho svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+.acordeao__painel {
+  padding-bottom: 20px;
+  color: var(--cinza-900);
+}

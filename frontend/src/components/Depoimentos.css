@@ -1,0 +1,45 @@
+.depoimentos--vermelho {
+  background: var(--vermelho-profundo);
+  color: var(--branco);
+}
+.depoimentos--bege {
+  background: var(--bege);
+}
+.depoimentos__lista {
+  margin-top: 28px;
+}
+.depoimento {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+  height: 100%;
+  min-height: 300px;
+  margin: 0;
+  padding: 20px;
+  border-radius: var(--raio);
+  font-size: 0.9375rem;
+}
+.depoimentos--vermelho .depoimento {
+  background: var(--vermelho-vivo);
+}
+.depoimentos--bege .depoimento {
+  background: var(--branco);
+}
+.depoimento blockquote {
+  margin: 0;
+}
+.depoimento figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.8125rem;
+}
+.depoimento figcaption > span:not(.depoimento__estrelas) {
+  opacity: 0.85;
+}
+.depoimento__estrelas {
+  display: flex;
+  gap: 4px;
+  margin-top: 10px;
+}

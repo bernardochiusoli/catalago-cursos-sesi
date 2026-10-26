@@ -1,0 +1,18 @@
+# .NET
+bin/
+obj/
+*.user
+.vs/
+TestResults/
+# Node
+node_modules/
+frontend/dist/
+# Ambiente e segredos
+.env
+.env.*
+!.env.example
+# Sistema
+.DS_Store
+Thumbs.db
+# Saída de publicação (o ZIP é gerado por scripts/gerar-publicacao.sh)
+publicacao/app/

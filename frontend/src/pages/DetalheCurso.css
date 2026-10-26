@@ -1,0 +1,214 @@
+.trilha ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 20px 0 0;
+  list-style: none;
+  font-size: 0.875rem;
+  color: var(--cinza-700);
+}
+.trilha li + li::before {
+  content: '/';
+  margin-right: 8px;
+}
+.trilha a {
+  color: var(--cinza-700);
+}
+
+.detalhe-topo {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  align-items: center;
+  padding-block: 32px 16px;
+}
+.detalhe-topo h1 {
+  margin: 16px 0 20px;
+  font-size: clamp(1.875rem, 4vw, 2.5rem);
+  font-weight: 700;
+}
+.detalhe-info {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.9375rem;
+}
+.detalhe-info li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.detalhe-info svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--cinza-700);
+}
+.detalhe-topo__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+.detalhe-topo__imagem {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--raio-grande);
+}
+.aviso-matricula {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  background: var(--cinza-100);
+  color: var(--cinza-900);
+  font-weight: 600;
+}
+.aviso-matricula--claro {
+  background: rgb(255 255 255 / 0.14);
+  color: var(--branco);
+}
+
+.detalhe-beneficios {
+  padding-block: 48px;
+}
+
+.detalhe-sobre {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 48px;
+  padding-bottom: 80px;
+}
+.detalhe-sobre__descricao {
+  margin-top: 16px;
+  color: var(--cinza-900);
+}
+.detalhe-sobre__ficha {
+  display: grid;
+  gap: 16px;
+  margin: 28px 0 0;
+}
+.detalhe-sobre__ficha dt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+.detalhe-sobre__ficha svg {
+  width: 18px;
+  height: 18px;
+}
+.detalhe-sobre__ficha dd {
+  margin: 4px 0 0;
+  color: var(--cinza-900);
+}
+
+.modulos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 20px;
+}
+.modulos h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+.modulos ul {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 4px;
+  font-size: 0.9375rem;
+  color: var(--cinza-700);
+}
+.modulos ul strong {
+  color: var(--cinza-900);
+  font-weight: 600;
+}
+.duvidas {
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+.duvidas dt {
+  font-weight: 700;
+}
+.duvidas dd {
+  margin: 2px 0 0;
+}
+
+.fale-conosco {
+  padding: 72px 0 120px;
+  text-align: center;
+  background: var(--vermelho-profundo);
+  color: var(--branco);
+}
+.fale-conosco .titulo-secao {
+  margin: 6px 0 24px;
+}
+
+.barra-matricula {
+  position: sticky;
+  bottom: 16px;
+  z-index: 40;
+  padding-inline: var(--respiro);
+  margin-top: -72px; /* "flutua" sobre o fim da faixa vermelha, sem deixar espaço em branco */
+  pointer-events: none;
+}
+.barra-matricula__conteudo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 10px 10px 10px 20px;
+  border-radius: var(--raio-grande);
+  background: var(--preto);
+  color: var(--branco);
+  box-shadow: var(--sombra);
+  pointer-events: auto;
+}
+.barra-matricula__conteudo p {
+  min-width: 0;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detalhe-carregando {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 40px;
+  padding-block: 48px;
+}
+.esqueleto--titulo {
+  height: 260px;
+}
+.esqueleto--midia {
+  height: 320px;
+}
+
+@media (max-width: 860px) {
+  .detalhe-topo,
+  .detalhe-sobre,
+  .detalhe-carregando {
+    grid-template-columns: 1fr;
+  }
+  .detalhe-topo__imagem {
+    order: -1;
+  }
+}
+@media (max-width: 520px) {
+  .barra-matricula__conteudo p {
+    font-size: 0.875rem;
+  }
+}

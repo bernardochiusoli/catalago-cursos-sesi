@@ -1,0 +1,55 @@
+.carrossel__trilho {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(240px, 22vw, 272px);
+  gap: 16px;
+  margin: 0;
+  padding: 8px 4px 16px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scrollbar-width: thin;
+}
+.carrossel__trilho > li {
+  scroll-snap-align: start;
+  display: flex;
+}
+.carrossel__trilho > li > * {
+  flex: 1;
+}
+.carrossel__rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.carrossel__setas {
+  display: flex;
+  gap: 8px;
+}
+.carrossel__seta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: var(--raio);
+  background: transparent;
+  cursor: pointer;
+}
+.carrossel__seta svg {
+  width: 26px;
+  height: 26px;
+}
+.carrossel__seta:hover {
+  background: var(--cinza-100);
+}
+.carrossel--escuro .carrossel__seta {
+  color: var(--branco);
+}
+.carrossel--escuro .carrossel__seta:hover {
+  background: rgb(255 255 255 / 0.12);
+}
